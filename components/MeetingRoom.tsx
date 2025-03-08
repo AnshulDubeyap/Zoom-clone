@@ -16,6 +16,7 @@ import { useSearchParams } from "next/navigation";
 import EndCallButton from "./EndCallButton";
 import { useCallStateHooks } from "@stream-io/video-react-sdk";
 import { CallingState } from "@stream-io/video-react-sdk";
+import { useRouter } from "next/navigation";
 
 //!-- Step-6-2 Import the DropDown from shadcn
 import {
@@ -45,6 +46,9 @@ const MeetingRoom = () => {
 
   //!-- Step-3-1 State to Show the hidden participants
   const [showParticipants, setShowParticipants] = useState(false);
+
+  //!-- Step-5-2 Router for the Leaving Function
+  const router = useRouter();
 
   //!-- Step-10 Get the useCallStateHooks
   const { useCallCallingState } = useCallStateHooks();
@@ -83,7 +87,8 @@ const MeetingRoom = () => {
 
       <div className="fixed bottom-0 flex w-full items-center justify-center gap-5 flex-wrap">
         {/* Step-5 Render the Call Controls */}
-        <CallControls />
+        {/* Step-5-1 Define a on leave function so once we click exit button we can leave the call */}
+        <CallControls onLeave={() => router.push("/")} />
         {/* Step-6-1 Render the DropDown to change the layout */}
         <DropdownMenu>
           <div className="flex items-center">
