@@ -24,7 +24,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Layout } from "lucide-react";
 
 //!-- Step-2-1 Creating type of CallLayout
 type CallLayoutType = "grid" | "speaker-left" | "speaker-right";
