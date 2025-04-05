@@ -1,6 +1,5 @@
 //!-- CallList Component (For render in the Upcoming, Previous and Recordings Pages)
 "use client";
-//@ts-ignore
 
 import React from "react";
 import { useGetCalls } from "@/hooks/useGetCalls";
@@ -64,13 +63,14 @@ const CallList = ({ type }: { type: "ended" | "upcoming" | "recordings" }) => {
           callRecordings.map((meeting) => meeting.queryRecordings())
         );
 
-        const recordings = callData
+        // Filter and flatten recordings
+        const filteredRecordings = callData
           .filter((call) => {
-            call.recordings.length > 0;
+            return call.recordings.length > 0; // Fix: Added return statement
           })
           .flatMap((call) => call.recordings);
 
-        setRecordings(recordings);
+        setRecordings(filteredRecordings);
       };
       if (type === "recordings") fetchRecordings();
     } catch (error) {

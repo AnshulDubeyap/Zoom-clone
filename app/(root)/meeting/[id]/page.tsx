@@ -3,13 +3,8 @@
 //!-- Meeting Page
 
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
 import { useUser } from "@clerk/nextjs";
-import {
-  StreamCall,
-  StreamCallProvider,
-  StreamTheme,
-} from "@stream-io/video-react-sdk";
+import { StreamCallProvider, StreamTheme } from "@stream-io/video-react-sdk";
 import MeetingSetup from "@/components/MeetingSetup";
 import MeetingRoom from "@/components/MeetingRoom";
 import useGetCallById from "@/hooks/useGetCallById";
@@ -34,13 +29,15 @@ const Meeting = () => {
   const { call, isCallLoading } = useGetCallById(id);
 
   //!-- Step-4-3 Create a loader
-  if (!isLoaded || !user) return <Loader />;
+  if (!isLoaded || !user || isCallLoading) return <Loader />;
 
   //* We are using Typescript thus we mention type of params that is params: { id: string }
   return (
     <main className="h-screen w-full">
       {/* Step-2 Render the Stream Call and Stream Theme */}
-      {/* Step-4 Creating a custom hook to know within which call we currently in*/}
+      {/* Step-4 Creating a custom hook to know within which call we currently 
+      in*/}
+
       <StreamCallProvider call={call}>
         <StreamTheme>
           {/* Step-3 Check if Audio and Video is enabled, For this define a State variable */}

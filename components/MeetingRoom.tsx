@@ -1,14 +1,12 @@
 //!-- Meeting Room Component
 
 import {
-  Call,
   CallControls,
   CallParticipantsList,
   CallStatsButton,
   PaginatedGridLayout,
   SpeakerLayout,
 } from "@stream-io/video-react-sdk";
-import React, { use } from "react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { LayoutList, Loader, Users } from "lucide-react";
@@ -23,7 +21,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
